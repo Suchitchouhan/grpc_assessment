@@ -1,0 +1,43 @@
+syntax="proto3";
+ 
+package proto;
+ 
+option go_package="example.com/grpc_assessment";
+ 
+ 
+message User {
+   string username =2;
+   string password =3;
+}
+ 
+message CreateUserRequest {
+   User user = 1;
+}
+
+message CreateUserResponse {
+   string message = 1;
+}
+
+message LoginUserRequest {
+   User user = 1;
+}
+
+message LoginUserResponse {
+    string token = 1;
+}
+
+
+message LogoutUserRequest {
+   string token = 1;
+}
+
+message LogoutUserResponse {
+    string message = 1;
+}
+
+ 
+service UserService {
+   rpc Register(CreateUserRequest) returns (CreateUserResponse) {}
+   rpc Login(LoginUserRequest) returns (LoginUserResponse) {}
+   rpc Logout(LogoutUserRequest) returns (LogoutUserResponse) {}
+}
